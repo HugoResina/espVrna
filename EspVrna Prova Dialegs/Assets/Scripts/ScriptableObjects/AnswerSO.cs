@@ -1,7 +1,8 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Answer", menuName = "Scriptable Objects/Text-Answer")]
-public class AnswerSO : TextSO
+public class AnswerSO : ScriptableObject
 {
-    public int destIndex;
+    [SerializeField] public string text;
+    [SerializeField] public TextSO nextText;
 }

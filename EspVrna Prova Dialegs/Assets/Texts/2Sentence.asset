@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: 2Sentence
   m_EditorClassIdentifier: Assembly-CSharp::SentenceSO
   text: Frase 2
-  index: 1
+  nextText: {fileID: 11400000, guid: 3dbc153a8e82c764b88e2955fab01448, type: 2}

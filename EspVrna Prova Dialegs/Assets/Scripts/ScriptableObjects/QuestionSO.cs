@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "Question", menuName = "Scriptable Objects/Text-Question")]
-public class QuestionSO : IndexableTextSO
+public class QuestionSO : TextSO
 {
-    private List<AnswerSO> answers;
+    [SerializeField] public List<AnswerSO> answers;
 }

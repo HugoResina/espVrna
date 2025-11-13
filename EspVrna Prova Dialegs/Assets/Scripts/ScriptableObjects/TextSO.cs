@@ -4,5 +4,5 @@ using UnityEngine;
 public abstract class TextSO : ScriptableObject
 {
     [TextArea(3, 10)]
-    [SerializeField] private string text;
+    [SerializeField] public string text;
 }

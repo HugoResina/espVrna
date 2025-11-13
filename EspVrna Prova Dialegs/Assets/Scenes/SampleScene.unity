@@ -1050,7 +1050,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1812947520}
-  - component: {fileID: 1812947519}
+  - component: {fileID: 1812947521}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -1058,19 +1058,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1812947519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1812947518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d46bb6f055d05b0408b1a6bf29c1e5d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Npc
-  npcData: {fileID: 0}
 --- !u!4 &1812947520
 Transform:
   m_ObjectHideFlags: 0
@@ -1086,6 +1073,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1812947521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812947518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80128fd2925c1514fac199f512074205, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueManager
+  StartingText: {fileID: 11400000, guid: 59499e54dc22127498eac679917d4df6, type: 2}
+  UIText: {fileID: 756429678}
+  UIAnswersParent: {fileID: 829520842}
+  UIAnswerButton: {fileID: 5446224309146331630, guid: 25607044fa43a5948bf734f7d4313583, type: 3}
+  UINextButton: {fileID: 728905302}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
