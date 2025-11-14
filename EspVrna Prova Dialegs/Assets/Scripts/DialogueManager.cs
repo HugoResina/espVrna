@@ -19,7 +19,7 @@ public class DialogueManager : MonoBehaviour
         if (StartingText != null)
         {
             CurrentText = StartingText;
-            NextDialogue();
+            ShowCurrentText();
         }
     }
 
@@ -38,7 +38,7 @@ public class DialogueManager : MonoBehaviour
             {
                 UINextButton.onClick.RemoveAllListeners();
                 UINextButton.gameObject.SetActive(false);
-                NextDialogue();
+                ShowCurrentText();
             });
         }
         else if (CurrentText is QuestionSO question)
@@ -59,7 +59,7 @@ public class DialogueManager : MonoBehaviour
                 {
                     CurrentText = answer.nextText;
 
-                    NextDialogue();
+                    ShowCurrentText();
 
                     foreach (Transform child in UIAnswersParent)
                     {
@@ -74,8 +74,5 @@ public class DialogueManager : MonoBehaviour
     }
 
     // Exemple simple per iniciar un diàleg
-    public void NextDialogue()
-    {
-        ShowCurrentText();
-    }
+
 }
