@@ -184,6 +184,55 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &474142489
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 474142490}
+  - component: {fileID: 474142491}
+  m_Layer: 0
+  m_Name: NPC2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &474142490
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474142489}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 546.4854, y: 229.77843, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &474142491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474142489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2868ba901dd4514486bb2d4b1fed32d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Npc
+  npcSO: {fileID: 11400000, guid: 10a2a903a97b0ac4faa219b37fb7f3ea, type: 2}
+  UIText: {fileID: 756429678}
+  UIAnswersParent: {fileID: 829520842}
+  UIAnswerButton: {fileID: 5446224309146331630, guid: 25607044fa43a5948bf734f7d4313583, type: 3}
+  UINextButton: {fileID: 728905302}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1057,7 +1106,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1812947520
 Transform:
   m_ObjectHideFlags: 0
@@ -1085,11 +1134,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80128fd2925c1514fac199f512074205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueManager
-  StartingText: {fileID: 11400000, guid: 59499e54dc22127498eac679917d4df6, type: 2}
-  UIText: {fileID: 756429678}
-  UIAnswersParent: {fileID: 829520842}
-  UIAnswerButton: {fileID: 5446224309146331630, guid: 25607044fa43a5948bf734f7d4313583, type: 3}
-  UINextButton: {fileID: 728905302}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1099,3 +1143,4 @@ SceneRoots:
   - {fileID: 1539922892}
   - {fileID: 1182232996}
   - {fileID: 1812947520}
+  - {fileID: 474142490}

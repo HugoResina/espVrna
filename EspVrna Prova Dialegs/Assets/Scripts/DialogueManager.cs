@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-    [SerializeField] private TextSO StartingText;
+    /*[SerializeField] private TextSO StartingText;
     private TextSO CurrentText;
 
     [SerializeField] private TextMeshProUGUI UIText;
@@ -74,5 +74,5 @@ public class DialogueManager : MonoBehaviour
     }
 
     // Exemple simple per iniciar un diàleg
-
+    */
 }
