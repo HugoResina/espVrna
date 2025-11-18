@@ -9,12 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b7c24bb6b587e745ab3fccada5d1f9a, type: 3}
-  m_Name: 1-Qu
-  m_EditorClassIdentifier: Assembly-CSharp::QuestionSO
+  m_Script: {fileID: 11500000, guid: ed2b52e8772effe44ba76f069edc71d8, type: 3}
+  m_Name: 0_Sentence_1
+  m_EditorClassIdentifier: Assembly-CSharp::SentenceSO
   Id: 1
-  Text: Pr1
-  AnswerIds:
-  - 11
-  - 12
-  - 13
+  Text: Hola

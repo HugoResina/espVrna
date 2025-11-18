@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 582dc44d80691624a95925d70bcbef31, type: 3}
+  m_Name: Npc1
+  m_EditorClassIdentifier: Assembly-CSharp::NpcSO
+  npcName: 
+  Dialogues:
+  - {fileID: 11400000, guid: e82410ded495b95448f8a61de2af80d6, type: 2}
+  - {fileID: 11400000, guid: 0b5629307fe3e6c4aa09dd73c0329030, type: 2}
+  - {fileID: 11400000, guid: 171b62bb6efeeac4795e5754b3163734, type: 2}
+  - {fileID: 11400000, guid: b3c6f451d56edc54da9d3411d64da041, type: 2}
+  - {fileID: 11400000, guid: 01ac74d92560f9e44a375b7ae7ec0ace, type: 2}

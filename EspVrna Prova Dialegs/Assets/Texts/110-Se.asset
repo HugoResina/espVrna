@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed2b52e8772effe44ba76f069edc71d8, type: 3}
   m_Name: 110-Se
   m_EditorClassIdentifier: Assembly-CSharp::SentenceSO
-  Id: 
-  Text: 
+  Id: 110
+  Text: Fr110
