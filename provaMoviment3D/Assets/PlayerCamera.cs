@@ -16,7 +16,7 @@ public class PlayerCamera : MonoBehaviour
         lookAction = playerInput.actions.FindAction("Look");
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        Debug.Log("CAMERA AWAKE");
+       
 
     }
     private void Update()
