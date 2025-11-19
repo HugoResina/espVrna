@@ -1,0 +1,12 @@
+Id|Type|Text|Answers
+1|1|Hola|
+1|2|Com estas?|[11,12,13]
+11|3|Be|
+12|3|Molt Be|
+13|3|Malament|
+10|1|Men alegro|
+13|2|Que et passa|[131,132]
+100|1|Que tinguis bon dia|
+131|3|He suspes un examen|
+132|3|He perdut el bus|
+1300|1|Aixo pasa|
