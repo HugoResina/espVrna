@@ -17,21 +17,26 @@ public class CsvToDialogue : MonoBehaviour
      * També s'ha de modificar la variable npcName per posar el nom de l'NPC que es vol processar.
      */
 
-    private static readonly string npcName = "Npc1";
+    /*private static readonly string npcName = "Npc1";
 
     private static readonly string csvFileName = npcName + "-Dialogues.csv";
     private static readonly string csvFilePath = "/Files/" + csvFileName;
 
     private static readonly string resourceFolderPath = "Assets/Resources/" + npcName + "/";
 
-    private static readonly string dialoguesFolderPath = resourceFolderPath + "/Dialogues/";
+    private static readonly string dialoguesFolderPath = resourceFolderPath + "/Dialogues/";*/
 
     private static TextSO newDialogue;
     private static NpcSO newNpc;
 
-    [MenuItem("Utilities/Generate Dialogues")]
-    public static void GenerateDialogues()
+    //[MenuItem("Utilities/Generate Dialogues")]
+    public static void GenerateDialogues(string npcName, string csvFileName, string csvFileDirectory, string resourcesDirectoryPath)
     {
+        //string csvFileName = npcName + "-Dialogues.csv";
+        string csvFilePath = $"{csvFileDirectory}/{csvFileName}";
+        string npcDirectoryPath = $"{resourcesDirectoryPath}/{npcName}";
+        string dialoguesDirectoryPath = npcDirectoryPath + "/Dialogues";
+
         newNpc = ScriptableObject.CreateInstance<NpcSO>();
         newNpc.name = npcName;
         newNpc.Dialogues = new List<TextSO>();
@@ -48,6 +53,9 @@ public class CsvToDialogue : MonoBehaviour
 
             if (type >= 1 && type <= 3)
             {
+                Directory.CreateDirectory(npcDirectoryPath);
+                Directory.CreateDirectory(dialoguesDirectoryPath);
+
                 if (type == 1)
                 {
                     newDialogue = ScriptableObject.CreateInstance<SentenceSO>();
@@ -72,14 +80,14 @@ public class CsvToDialogue : MonoBehaviour
 
                 name += "_" + newDialogue.Id;
 
-                AssetDatabase.CreateAsset(newDialogue, dialoguesFolderPath + name + ".asset");
+                AssetDatabase.CreateAsset(newDialogue, $"{dialoguesDirectoryPath}/{name}.asset");
             }
             else
             {
                 Debug.LogError("Invalid type in CSV: " + type);
             }
         }
-        AssetDatabase.CreateAsset(newNpc, resourceFolderPath + npcName + ".asset");
+        AssetDatabase.CreateAsset(newNpc, $"{npcDirectoryPath}/{npcName}.asset");
 
         AssetDatabase.SaveAssets();
     }
