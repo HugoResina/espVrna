@@ -5,14 +5,14 @@ using UnityEngine.UI;
 
 public class Npc : MonoBehaviour
 {
-    /* Cada Npc té un conjunt de frases, preguntes i respostes amb ids
+    /* Cada Npc t? un conjunt de frases, preguntes i respostes amb ids
      * 
      * Llegenda de ids:
-     *      el id es string numerics, comença en 1
+     *      el id es string numerics, comen?a en 1
      *      el id de cada resposta es la concatenacio del id de la pregunta i un digit que indica la resposta concreta (1, 2, 3...)
      *      el id de una resposta a una frase o pregunta; o de una frase a una pregunta es el mateix
      *      si dues respostes duuen a la mateixa frase, aquesta es considera convergent i substitueix l'ultim digit del id per un 0
-     *      si una frase es la ultima del diàleg, el seu id acaba en 00
+     *      si una frase es la ultima del di?leg, el seu id acaba en 00
      */
 
     [Header("NPC Data")]
@@ -158,14 +158,14 @@ public class Npc : MonoBehaviour
         int i = currentIndex + 1;
         bool found = false;
 
-        while ((i < dialogues.Count && !found)) 
+        while ((i < dialogues.Count && !found))
         {
             if (currentId.Equals(dialogues[i].Id) || IsConvergent(currentId, dialogues[i].Id) || IsFinished(dialogues[i].Id))
             {
                 found = true;
                 currentIndex = i;
             }
-            
+
             i++;
         }
     }

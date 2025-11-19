@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2868ba901dd4514486bb2d4b1fed32d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Npc
-  npcSO: {fileID: 11400000, guid: 0d5ca452d802d9b43a3852a01f9dd274, type: 2}
+  npcSO: {fileID: 11400000, guid: 546bf61efe55b6a40acf1c146e4b89be, type: 2}
   UIText: {fileID: 756429678}
   UIAnswersParent: {fileID: 829520842}
   UIAnswerButton: {fileID: 5446224309146331630, guid: 25607044fa43a5948bf734f7d4313583, type: 3}
