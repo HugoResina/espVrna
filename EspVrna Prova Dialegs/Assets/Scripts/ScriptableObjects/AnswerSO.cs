@@ -4,5 +4,5 @@ using UnityEngine;
 public class AnswerSO : TextSO
 {
     //[SerializeField] public string text;
-    //[SerializeField] public TextSO nextText;
+    [SerializeField] public string NextId;
 }

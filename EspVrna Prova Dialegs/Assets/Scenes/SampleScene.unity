@@ -225,9 +225,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 474142489}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2868ba901dd4514486bb2d4b1fed32d, type: 3}
+  m_Script: {fileID: 11500000, guid: 43c82564be41ce64b9b18d32a75651b0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Npc
+  m_EditorClassIdentifier: Assembly-CSharp::NewNpc
   npcSO: {fileID: 11400000, guid: 546bf61efe55b6a40acf1c146e4b89be, type: 2}
   UIText: {fileID: 756429678}
   UIAnswersParent: {fileID: 829520842}

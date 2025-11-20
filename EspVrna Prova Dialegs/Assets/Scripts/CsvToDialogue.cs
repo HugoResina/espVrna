@@ -70,6 +70,7 @@ public class CsvToDialogue : MonoBehaviour
                 else if (type == 3)
                 {
                     newDialogue = ScriptableObject.CreateInstance<AnswerSO>();
+                    ((AnswerSO)newDialogue).NextId = line[3];
                     name += "Answer";
                 }
 
