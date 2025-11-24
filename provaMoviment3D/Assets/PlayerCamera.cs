@@ -10,13 +10,16 @@ public class PlayerCamera : MonoBehaviour
     public float SensY;
     float YRotation;
     float XRotation;
+    public GameObject seePoint;
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
         lookAction = playerInput.actions.FindAction("Look");
-        Cursor.lockState = CursorLockMode.Locked;
+        
         Cursor.visible = false;
-       
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        Cursor.lockState = CursorLockMode.Locked;
+
 
     }
     private void Update()
@@ -31,10 +34,10 @@ public class PlayerCamera : MonoBehaviour
     }
     void Look()
     {
-        //Vector2 direction = lookAction.ReadValue<Vector2>();
 
         transform.rotation = Quaternion.Euler(XRotation, YRotation, 0);
         orientation.rotation = Quaternion.Euler(0, YRotation, 0);
+        seePoint.transform.rotation = transform.rotation;
 
     }
 }

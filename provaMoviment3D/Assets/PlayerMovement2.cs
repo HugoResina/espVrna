@@ -1,3 +1,5 @@
+using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,12 +15,16 @@ public class PlayerMovement2 : MonoBehaviour, InputSystem_Actions.IPlayerMovemen
     private float playerHeight = 2;
     [SerializeField] private LayerMask whatIsGround;
     private bool grounded;
-    private float grondDrag = 5;
-    private float jumpForce = 12;
+    private float groundDrag = 5;
+    private float jumpForce = 8;
     private float jumpCooldown = 0.25f;
-    private float airMultipliyer = 0.4f;
+    private float airMultiplier = 0.4f;
     private bool readyToJump = true;
+    private bool isSprinting = false;
+    [SerializeField] private LayerMask interactLayer;
     private InputSystem_Actions inputActions;
+    [SerializeField] private Transform seePoint;
+    
 
 
     private void Awake()
@@ -26,6 +32,10 @@ public class PlayerMovement2 : MonoBehaviour, InputSystem_Actions.IPlayerMovemen
         inputActions = new InputSystem_Actions();
         inputActions.PlayerMovement.SetCallbacks(this);
         rb = GetComponent<Rigidbody>();
+        
+
+        Cursor.visible = false;
+        
     }
     private void OnEnable()
     {
@@ -39,21 +49,51 @@ public class PlayerMovement2 : MonoBehaviour, InputSystem_Actions.IPlayerMovemen
     private void Update()
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
-        
-        Debug.Log(grounded);
-
+        Debug.DrawRay(transform.position, Vector3.down, grounded ? Color.green : Color.red);
+        //Debug.Log(grounded);
         if (grounded)
-            rb.linearDamping = grondDrag;
+        {
+            rb.linearDamping = groundDrag;
+            rb.AddForce(MoveDirection.normalized * MoveSpeed * (isSprinting ? 15 : 10), ForceMode.Force);
+        }
         else
-            rb.angularDamping = 0;
+        {
+            rb.linearDamping = 3f;
+            rb.AddForce(MoveDirection.normalized * MoveSpeed * (isSprinting ? 15 : 10) * airMultiplier, ForceMode.Force);
+        }
+           SpeedControll();
 
-        SpeedControll();
 
+
+        Vector3 lookDir = seePoint.forward;
+
+        Ray ray = new Ray(seePoint.position, lookDir);
+        
+        RaycastHit hit;
        
+        Debug.DrawRay(seePoint.position, lookDir * 4f, Color.yellow);
+
+        if (Physics.Raycast(ray, out hit, interactLayer))
+        {
+            var interactable = hit.collider.GetComponent<IInteractuable>();
+            if (interactable != null)
+            {
+                
+                interactable.ShowDialogue();
+            }
+        }
+
+    }
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        
+        Vector2 direction = context.ReadValue<Vector2>();
+        MoveDirection = Orientation.forward * direction.y + Orientation.right * direction.x;//* direction.z;
+
     }
     private void SpeedControll()
     {
-        Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
+        Vector3 flatVel = rb.linearVelocity;
 
         if (flatVel.magnitude > MoveSpeed)
         {
@@ -65,13 +105,16 @@ public class PlayerMovement2 : MonoBehaviour, InputSystem_Actions.IPlayerMovemen
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        Debug.Log("salto");
+       
+       
         if (context.performed) 
         {
-            Debug.Log("salto context");
+     
+
             if (readyToJump && grounded)
             {
-                Debug.Log("he saltat");
+              
+
                 readyToJump = false;
                 Jump();
                 Invoke(nameof(ResetJump), jumpCooldown);
@@ -80,8 +123,9 @@ public class PlayerMovement2 : MonoBehaviour, InputSystem_Actions.IPlayerMovemen
     }
     public void Jump()
     {
-        rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+       
+       
+        rb.linearVelocity = Vector3.up * jumpForce;
     }
 
     private void ResetJump()
@@ -89,19 +133,20 @@ public class PlayerMovement2 : MonoBehaviour, InputSystem_Actions.IPlayerMovemen
         readyToJump = true;
     }
 
-
-    public void OnMove(InputAction.CallbackContext context)
+    public void OnSprint(InputAction.CallbackContext context)
     {
-        Debug.Log("em moc");
-        Vector2 direction = context.ReadValue<Vector2>();
-        MoveDirection = Orientation.forward * direction.y + Orientation.right * direction.x;// * direction.z;
-
-        if (grounded)
-            rb.AddForce(MoveDirection.normalized * MoveSpeed * 10, ForceMode.Force);
-        else if (!grounded)
+        if (context.performed)
         {
-            rb.AddForce(MoveDirection.normalized * MoveSpeed * 10 * airMultipliyer, ForceMode.Force);
-
+            if (grounded)
+            {
+                
+                isSprinting = true;
+              
+            }
+        }
+        else if (context.canceled)
+        {
+            isSprinting = false;
         }
     }
 }
