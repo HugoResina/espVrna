@@ -5,13 +5,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement2 : MonoBehaviour, InputSystem_Actions.IPlayerMovementActions
 {
-    private float MoveSpeed = 7;
+    
 
     public Transform Orientation;
     public Vector3 MoveDirection;
     public Rigidbody rb;
 
-   
     private float playerHeight = 2;
     [SerializeField] private LayerMask whatIsGround;
     private bool grounded;
@@ -24,8 +23,9 @@ public class PlayerMovement2 : MonoBehaviour, InputSystem_Actions.IPlayerMovemen
     [SerializeField] private LayerMask interactLayer;
     private InputSystem_Actions inputActions;
     [SerializeField] private Transform seePoint;
-    
-
+    private IInteractuable lastInteractuable = null;
+    private IInteractuable interacting = null;
+    private float MoveSpeed = 7;
 
     private void Awake()
     {
@@ -61,9 +61,7 @@ public class PlayerMovement2 : MonoBehaviour, InputSystem_Actions.IPlayerMovemen
             rb.linearDamping = 3f;
             rb.AddForce(MoveDirection.normalized * MoveSpeed * (isSprinting ? 15 : 10) * airMultiplier, ForceMode.Force);
         }
-           SpeedControll();
-
-
+        SpeedControll();
 
         Vector3 lookDir = seePoint.forward;
 
@@ -71,24 +69,39 @@ public class PlayerMovement2 : MonoBehaviour, InputSystem_Actions.IPlayerMovemen
         
         RaycastHit hit;
        
-        Debug.DrawRay(seePoint.position, lookDir * 4f, Color.yellow);
+        Debug.DrawRay(seePoint.position, lookDir * 3f, Color.yellow);
 
-        if (Physics.Raycast(ray, out hit, interactLayer))
+        bool hitBool = Physics.Raycast(ray, out hit, 3f,interactLayer);
+        if (hitBool)
         {
-            var interactable = hit.collider.GetComponent<IInteractuable>();
-            if (interactable != null)
+            interacting = hit.collider.GetComponent<IInteractuable>();
+            if (interacting != null)
             {
-                
-                interactable.ShowDialogue();
+                interacting.SetActiveDiaolgue(true);
+                if(interacting != lastInteractuable &&  lastInteractuable != null)
+                {
+                    lastInteractuable.SetActiveDiaolgue(false);
+                }
+                lastInteractuable = interacting;
             }
         }
-
+        else if( !hitBool && lastInteractuable != null)
+        {
+            //Debug.Log("fuera");
+            lastInteractuable.SetActiveDiaolgue(false);
+            lastInteractuable.TurnOff();
+            lastInteractuable = null;
+           
+            interacting.SetActiveDiaolgue(false);
+            interacting = null;
+        }
+      
     }
     public void OnMove(InputAction.CallbackContext context)
     {
         
         Vector2 direction = context.ReadValue<Vector2>();
-        MoveDirection = Orientation.forward * direction.y + Orientation.right * direction.x;//* direction.z;
+        MoveDirection = Orientation.forward * direction.y + Orientation.right * direction.x;
 
     }
     private void SpeedControll()
@@ -148,5 +161,22 @@ public class PlayerMovement2 : MonoBehaviour, InputSystem_Actions.IPlayerMovemen
         {
             isSprinting = false;
         }
+    }
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+
+
+            if (interacting != null)
+            {
+                Debug.Log("hola");
+            }
+        }
+        if (context.canceled)
+            Debug.Log("canceled");
+        if (context.performed)
+            Debug.Log("Perf");
     }
 }

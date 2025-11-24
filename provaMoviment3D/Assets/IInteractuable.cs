@@ -1,18 +1,11 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Rendering.Universal;
 
-public class IInteractuable : MonoBehaviour
+public interface IInteractuable 
 {
+    public void SetActiveDiaolgue(bool state);
+    public void TurnOff();
 
-
-    //public bool isInteracting = false;
-
-
-
-    public void ShowDialogue()
-    {
-
-        Debug.Log("interacted");
-
-    }
 }
