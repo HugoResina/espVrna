@@ -8,7 +8,8 @@ public class MockNPC : MonoBehaviour, IInteractuable
 
     public Text _text;
 
-    
+    [SerializeField] private GameObject panel;
+
 
     private void Update()
     {
@@ -25,6 +26,9 @@ public class MockNPC : MonoBehaviour, IInteractuable
     public void SetActiveDiaolgue(bool state)
     {
         isInteracting = state;
+        panel.active = state;
+ 
+        
     }
 
   
