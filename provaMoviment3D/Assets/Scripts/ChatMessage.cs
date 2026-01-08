@@ -11,6 +11,7 @@ public class ChatRequest
     public string model;
     public ChatMessage[] messages;
     public bool stream;
+    public bool think;
 }
 
 [System.Serializable]

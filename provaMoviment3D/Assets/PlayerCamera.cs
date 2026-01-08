@@ -11,6 +11,7 @@ public class PlayerCamera : MonoBehaviour
     float YRotation;
     float XRotation;
     public GameObject seePoint;
+    private bool interacting;
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -22,15 +23,30 @@ public class PlayerCamera : MonoBehaviour
 
 
     }
+    private void OnEnable()
+    {
+        MockNPC.interactingFlag += interactingFlag;
+    }
+    private void OnDisable()
+    {
+        MockNPC.interactingFlag -= interactingFlag;
+    }
+    private void interactingFlag(bool state)
+    {
+        interacting = state;
+    }
     private void Update()
     {
-        float mouseX = lookAction.ReadValue<Vector2>().x * Time.deltaTime * SensX;
-        float mouseY = lookAction.ReadValue<Vector2>().y * Time.deltaTime * SensY;
+        if (!interacting)
+        {
+            float mouseX = lookAction.ReadValue<Vector2>().x * Time.deltaTime * SensX;
+            float mouseY = lookAction.ReadValue<Vector2>().y * Time.deltaTime * SensY;
 
-        YRotation += mouseX;
-        XRotation -= mouseY;
-        XRotation = Mathf.Clamp(XRotation, -90f, 90f);
-        Look();
+            YRotation += mouseX;
+            XRotation -= mouseY;
+            XRotation = Mathf.Clamp(XRotation, -90f, 90f);
+            Look();
+        }
     }
     void Look()
     {

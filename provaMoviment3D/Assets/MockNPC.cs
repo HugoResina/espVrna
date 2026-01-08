@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,7 @@ public class MockNPC : MonoBehaviour, IInteractuable
     public Text _text;
 
     [SerializeField] private GameObject panel;
+    public static event Action<bool> interactingFlag;
 
 
     private void Update()
@@ -23,12 +25,25 @@ public class MockNPC : MonoBehaviour, IInteractuable
         }
 
     }
+  
     public void SetActiveDiaolgue(bool state)
     {
         isInteracting = state;
-        panel.active = state;
- 
+        panel.SetActive(state);
+        Cursor.visible = state;
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        Cursor.lockState = state? CursorLockMode.None : CursorLockMode.Locked;
+
         
+
+        interactingFlag?.Invoke(state);
+        Debug.Log("setactivedialogue ----->" + state );
+        if (!state)
+        {
+            interactingFlag?.Invoke(false);
+
+        }
+
     }
 
   

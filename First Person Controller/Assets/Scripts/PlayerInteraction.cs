@@ -33,6 +33,7 @@ public class PlayerInteraction : MonoBehaviour
             {
                 //Debug.Log("Looking at: " + interactable.name);
                 interactText.text = interactable.name;
+
             }
             else
             {

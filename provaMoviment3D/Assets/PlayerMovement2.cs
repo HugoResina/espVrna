@@ -27,6 +27,8 @@ public class PlayerMovement2 : MonoBehaviour, InputSystem_Actions.IPlayerMovemen
     private IInteractuable interacting = null;
     private float MoveSpeed = 7;
 
+    
+
     private void Awake()
     {
         inputActions = new InputSystem_Actions();
@@ -34,7 +36,7 @@ public class PlayerMovement2 : MonoBehaviour, InputSystem_Actions.IPlayerMovemen
         rb = GetComponent<Rigidbody>();
         
 
-        Cursor.visible = false;
+        
         
     }
     private void OnEnable()
@@ -72,6 +74,7 @@ public class PlayerMovement2 : MonoBehaviour, InputSystem_Actions.IPlayerMovemen
         Debug.DrawRay(seePoint.position, lookDir * 3f, Color.yellow);
 
         bool hitBool = Physics.Raycast(ray, out hit, 3f,interactLayer);
+        //Debug.Log("ray " + hitBool); 
         if (hitBool)
         {
             interacting = hit.collider.GetComponent<IInteractuable>();
@@ -85,17 +88,19 @@ public class PlayerMovement2 : MonoBehaviour, InputSystem_Actions.IPlayerMovemen
                 lastInteractuable = interacting;
             }
         }
-        else if( !hitBool && lastInteractuable != null)
+        else if (!hitBool && lastInteractuable != null)
         {
             //Debug.Log("fuera");
             lastInteractuable.SetActiveDiaolgue(false);
             lastInteractuable.TurnOff();
             lastInteractuable = null;
-           
+
             interacting.SetActiveDiaolgue(false);
             interacting = null;
         }
-      
+        
+
+
     }
     public void OnMove(InputAction.CallbackContext context)
     {
